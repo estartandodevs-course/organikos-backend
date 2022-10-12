@@ -1,20 +1,33 @@
 {
-  "name": "organikos-backend",
-  "version": "1.0.0",
-  "description": "Projeto final do curso estartandodevs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/estartandodevs-course/organikos-backend.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/estartandodevs-course/organikos-backend/issues"
-  },
-  "homepage": "https://github.com/estartandodevs-course/organikos-backend#readme"
+    "name": "organikos-backend",
+    "version": "1.0.0",
+    "description": "Projeto final do curso estartandodevs",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format:check": "prettier --check .",
+        "format:write": "prettier --write .",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/estartandodevs-course/organikos-backend.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/estartandodevs-course/organikos-backend/issues"
+    },
+    "homepage": "https://github.com/estartandodevs-course/organikos-backend#readme",
+    "dependencies": {
+        "express": "^4.18.2",
+        "nodemon": "^2.0.20"
+    },
+    "devDependencies": {
+        "eslint": "^8.25.0",
+        "eslint-config-prettier": "^8.5.0",
+        "prettier": "^2.7.1"
+    }
 }
