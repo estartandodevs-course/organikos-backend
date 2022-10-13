@@ -1,24 +1,21 @@
 const { Router } = require('../../../config/app')
+const {
+    getAllController,
+    getByTagController,
+    getByIdController,
+    postNewSellerController,
+    putSellerByIdController,
+    deleteSellerByIdController,
+} = require('../../../api/controller/seller/index')
 
 const SellerRouter = Router()
 
-SellerRouter.get('/seller', async (req, res) => {
-    res.send('Listar todos os produtores')
-})
-SellerRouter.get('/seller/tag/:id_tag', async (req, res) => {
-    res.send('Listar todos os produtores que vendem determinado produto')
-})
-SellerRouter.get('/seller/:id', (req, res) => {
-    res.send('Listar produtor pelo id')
-})
-SellerRouter.post('/seller', (req, res) => {
-    res.send('Cadastrar novo produtor')
-})
-SellerRouter.put('/seller/:id', (req, res) => {
-    res.send('Editar um produtor pelo id')
-})
-SellerRouter.delete('/seller/:id', (req, res) => {
-    res.send('Deleter um produtor pelo id')
-})
+SellerRouter.get('/seller', getAllController.execute)
+SellerRouter.get('/seller/tag/:id_tag', getByTagController.execute)
+SellerRouter.get('/seller/:id', getByIdController.execute)
+SellerRouter.post('/seller', postNewSellerController.execute)
+SellerRouter.put('/seller/:id', putSellerByIdController.execute)
+
+SellerRouter.delete('/seller/:id', deleteSellerByIdController.execute)
 
 module.exports = SellerRouter
