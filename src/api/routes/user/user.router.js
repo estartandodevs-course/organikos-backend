@@ -2,9 +2,6 @@ const { Router } = require('../../../config/app')
 
 const UserRouter = Router()
 
-UserRouter.get('/', (req, res) => {
-    res.send('Organikos API!')
-})
 UserRouter.get('/user', async (req, res) => {
     res.send('Get Users')
 })
