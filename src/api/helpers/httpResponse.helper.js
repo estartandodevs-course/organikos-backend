@@ -5,7 +5,7 @@ module.exports = class HttpResponse {
         return {
             statusCode: 400,
             err: new MissingParamsError(paramName),
-            body: httpRequest,
+            body: httpRequest.body,
         }
     }
 
