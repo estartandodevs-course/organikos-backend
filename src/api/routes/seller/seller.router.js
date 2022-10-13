@@ -5,7 +5,7 @@ const SellerRouter = Router()
 SellerRouter.get('/seller', async (req, res) => {
     res.send('Listar todos os produtores')
 })
-SellerRouter.get('/seller/:id_tag', async (req, res) => {
+SellerRouter.get('/seller/tag/:id_tag', async (req, res) => {
     res.send('Listar todos os produtores que vendem determinado produto')
 })
 SellerRouter.get('/seller/:id', (req, res) => {
