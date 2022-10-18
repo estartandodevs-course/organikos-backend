@@ -4,7 +4,7 @@ const {
     // getByTagController,
     // getByIdController,
     postNewSellerController,
-    // putSellerByIdController,
+    putSellerByIdController,
     // deleteSellerByIdController,
 } = require('../../../api/composer/seller.compose');
 
@@ -16,7 +16,9 @@ const SellerRouter = Router();
 SellerRouter.post('/seller', async (req, res) => {
     await postNewSellerController.execute(req, res);
 });
-// SellerRouter.put('/seller/:id', putSellerByIdController.execute);
+SellerRouter.put('/seller/:id', async (req, res) => {
+    await putSellerByIdController.execute(req, res);
+});
 
 // SellerRouter.delete('/seller/:id', deleteSellerByIdController.execute);
 
