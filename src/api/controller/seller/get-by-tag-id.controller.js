@@ -5,7 +5,7 @@ module.exports = class GetSellerByTagController {
     async execute(req, res) {
         try {
             const seller = await this.seller.getByTag();
-            res.status(201).send(JSON.stringify(seller));
+            res.status(200).send(JSON.stringify(seller));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
             if (errorObj.statusCode) {
