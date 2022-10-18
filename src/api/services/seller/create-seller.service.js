@@ -1,3 +1,5 @@
+const generateId = require('../../helpers/id-generator.helper');
+
 module.exports = class CreateSellerService {
     constructor() {}
     async create(params) {
@@ -27,7 +29,10 @@ module.exports = class CreateSellerService {
             if (!payment) throw new Error('Missing payment');
             if (!category) throw new Error('Missing category');
 
-            return 'seller';
+            return {
+                id: generateId(),
+                ...params,
+            };
         } catch (error) {
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })
