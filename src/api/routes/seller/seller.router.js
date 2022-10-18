@@ -3,6 +3,7 @@ const {
     getAllSellerController,
     postNewSellerController,
     putSellerByIdController,
+    getSellerByTagController,
 } = require('../../../api/composer/seller.compose');
 
 const SellerRouter = Router();
@@ -10,7 +11,9 @@ const SellerRouter = Router();
 SellerRouter.get('/seller', async (req, res) => {
     await getAllSellerController.execute(req, res);
 });
-// SellerRouter.get('/seller/tag/:id_tag', getByTagController.execute);
+SellerRouter.get('/seller/tag/:id_tag', async (req, res) => {
+    await getSellerByTagController.execute(req, res);
+});
 // SellerRouter.get('/seller/:id', getByIdController.execute);
 SellerRouter.post('/seller', async (req, res) => {
     await postNewSellerController.execute(req, res);
