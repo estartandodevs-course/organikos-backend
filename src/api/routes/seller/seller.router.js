@@ -1,16 +1,15 @@
 const { Router } = require('../../../config/app');
 const {
-    // getAllController,
-    // getByTagController,
-    // getByIdController,
+    getAllSellerController,
     postNewSellerController,
     putSellerByIdController,
-    // deleteSellerByIdController,
 } = require('../../../api/composer/seller.compose');
 
 const SellerRouter = Router();
 
-// SellerRouter.get('/seller', getAllController.execute);
+SellerRouter.get('/seller', async (req, res) => {
+    await getAllSellerController.execute(req, res);
+});
 // SellerRouter.get('/seller/tag/:id_tag', getByTagController.execute);
 // SellerRouter.get('/seller/:id', getByIdController.execute);
 SellerRouter.post('/seller', async (req, res) => {
