@@ -1,6 +1,6 @@
-module.exports = class GetSellerByTagService {
+module.exports = class GetSellerByIdService {
     constructor() {}
-    async getByTag() {
+    async getById() {
         try {
             return {
                 sellerId: '123e4567-e89b-12d3-a456-426614174000',
