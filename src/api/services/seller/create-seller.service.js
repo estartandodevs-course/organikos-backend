@@ -1,7 +1,5 @@
 module.exports = class CreateSellerService {
-    constructor() {
-        console.log('CreateSellerService constructor');
-    }
+    constructor() {}
     async create(params) {
         try {
             const {
