@@ -17,4 +17,4 @@ const putSellerByIdController = new PutSellerByIdController(
     updateSellerService
 );
 
-module.exports = { postNewSellerController };
+module.exports = { postNewSellerController, putSellerByIdController };
