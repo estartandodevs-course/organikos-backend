@@ -9,4 +9,5 @@ module.exports = {
     PutSellerByIdController,
     GetAllSellerController,
     GetSellerByTagController,
+    GetSellerByIdController,
 };
