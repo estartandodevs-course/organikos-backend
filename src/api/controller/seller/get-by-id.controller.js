@@ -5,7 +5,7 @@ module.exports = class GetSellerByIdController {
     async execute(req, res) {
         try {
             const seller = await this.seller.getById();
-            res.status(201).send(JSON.stringify(seller));
+            res.status(200).send(JSON.stringify(seller));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
             if (errorObj.statusCode) {
