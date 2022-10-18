@@ -1,6 +1,6 @@
 module.exports = class UpdateSellerService {
     constructor() {}
-    async create(params) {
+    async update(params) {
         try {
             const {
                 name,
