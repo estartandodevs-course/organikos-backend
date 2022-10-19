@@ -3,7 +3,7 @@ const PutSellerByIdController = require('./put-seller-by-id.controller');
 const GetAllSellerController = require('./get-all.controller');
 const GetSellerByTagController = require('./get-by-tag-id.controller');
 const GetSellerByIdController = require('./get-by-id.controller');
-const DeleteSellerByIdController = require('./delete-by-id.controller');
+const DeleteSellerByIdController = require('./delete-seller.controller');
 
 module.exports = {
     PostNewSellerController,
