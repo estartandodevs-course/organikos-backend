@@ -1,5 +1,7 @@
 module.exports = class DeleteSellerService {
-    constructor() {}
+    constructor(repository) {
+        this.repository = repository;
+    }
     async delete() {
         try {
             return 'delete seller';

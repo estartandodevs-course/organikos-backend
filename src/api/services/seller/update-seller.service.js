@@ -1,5 +1,7 @@
 module.exports = class UpdateSellerService {
-    constructor() {}
+    constructor(repository) {
+        this.repository = repository;
+    }
     async update(params) {
         try {
             const {

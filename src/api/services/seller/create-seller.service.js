@@ -1,7 +1,9 @@
 const generateId = require('../../helpers/id-generator.helper');
 
 module.exports = class CreateSellerService {
-    constructor() {}
+    constructor(repository) {
+        this.repository = repository;
+    }
     async create(params) {
         try {
             const {

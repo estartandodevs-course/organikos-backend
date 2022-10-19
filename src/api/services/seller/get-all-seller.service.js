@@ -1,5 +1,7 @@
 module.exports = class GetAllSellerService {
-    constructor() {}
+    constructor(repository) {
+        this.repository = repository;
+    }
     async getAll() {
         try {
             return [

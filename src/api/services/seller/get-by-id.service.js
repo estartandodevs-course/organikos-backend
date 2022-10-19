@@ -1,5 +1,7 @@
 module.exports = class GetSellerByIdService {
-    constructor() {}
+    constructor(repository) {
+        this.repository = repository;
+    }
     async getById() {
         try {
             return {
