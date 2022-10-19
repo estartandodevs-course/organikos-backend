@@ -5,6 +5,7 @@ const {
     putSellerByIdController,
     getSellerByTagController,
     getSellerByIdController,
+    deleteSellerByIdController,
 } = require('../../../api/composer/seller.compose');
 
 const SellerRouter = Router();
@@ -25,6 +26,8 @@ SellerRouter.put('/seller/:id', async (req, res) => {
     await putSellerByIdController.execute(req, res);
 });
 
-// SellerRouter.delete('/seller/:id', deleteSellerByIdController.execute);
+SellerRouter.delete('/seller/:id', async (req, res) => {
+    await deleteSellerByIdController.execute(req, res);
+});
 
 module.exports = SellerRouter;
