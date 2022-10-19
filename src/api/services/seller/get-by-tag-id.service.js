@@ -1,5 +1,7 @@
 module.exports = class GetSellerByTagService {
-    constructor() {}
+    constructor(repository) {
+        this.repository = repository;
+    }
     async getByTag() {
         try {
             return [
