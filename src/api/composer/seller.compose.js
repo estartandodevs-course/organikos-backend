@@ -4,6 +4,7 @@ const {
     GetAllSellerController,
     GetSellerByTagController,
     GetSellerByIdController,
+    DeleteSellerByIdController,
 } = require('../controller/seller/index');
 
 const {
@@ -12,6 +13,7 @@ const {
     GetAllSellerService,
     GetSellerByTagService,
     GetSellerByIdService,
+    DeleteSellerService,
 } = require('../services/seller/index');
 
 const createSellerService = new CreateSellerService();
@@ -19,6 +21,7 @@ const updateSellerService = new UpdateSellerService();
 const getAllSellerService = new GetAllSellerService();
 const getSellerByTagService = new GetSellerByTagService();
 const getSellerByIdService = new GetSellerByIdService();
+const deleteSellerService = new DeleteSellerService();
 
 const postNewSellerController = new PostNewSellerController(
     createSellerService
@@ -33,6 +36,9 @@ const getSellerByTagController = new GetSellerByTagController(
 const getSellerByIdController = new GetSellerByIdController(
     getSellerByIdService
 );
+const deleteSellerByIdController = new DeleteSellerByIdController(
+    deleteSellerService
+);
 
 module.exports = {
     postNewSellerController,
@@ -40,4 +46,5 @@ module.exports = {
     getAllSellerController,
     getSellerByTagController,
     getSellerByIdController,
+    deleteSellerByIdController,
 };
