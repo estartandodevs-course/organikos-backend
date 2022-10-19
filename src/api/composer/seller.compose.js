@@ -16,12 +16,15 @@ const {
     DeleteSellerService,
 } = require('../services/seller/index');
 
-const createSellerService = new CreateSellerService();
-const updateSellerService = new UpdateSellerService();
-const getAllSellerService = new GetAllSellerService();
-const getSellerByTagService = new GetSellerByTagService();
-const getSellerByIdService = new GetSellerByIdService();
-const deleteSellerService = new DeleteSellerService();
+const SellerRepository = require('../repository/seller.repository');
+const sellerRepository = new SellerRepository();
+
+const createSellerService = new CreateSellerService(sellerRepository);
+const updateSellerService = new UpdateSellerService(sellerRepository);
+const getAllSellerService = new GetAllSellerService(sellerRepository);
+const getSellerByTagService = new GetSellerByTagService(sellerRepository);
+const getSellerByIdService = new GetSellerByIdService(sellerRepository);
+const deleteSellerService = new DeleteSellerService(sellerRepository);
 
 const postNewSellerController = new PostNewSellerController(
     createSellerService
