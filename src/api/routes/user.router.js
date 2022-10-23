@@ -1,4 +1,4 @@
-const { Router } = require('../../../config/app');
+const { Router } = require('../../config/app');
 
 const UserRouter = Router();
 
