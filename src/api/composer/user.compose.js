@@ -2,12 +2,14 @@ const {
     GetUserByIdController,
     PostNewUserController,
     PutUserByIdController,
+    DeleteUserByIdController,
 } = require('../controller/user/index');
 
 const {
     GetUserByIdService,
     CreateUserService,
     UpdateUserService,
+    DeleteUserService,
 } = require('../services/user/index');
 
 const UserRepository = require('../repository/user.repository');
@@ -22,8 +24,14 @@ const postNewUserController = new PostNewUserController(createUserService);
 const updateUserService = new UpdateUserService(userRepository);
 const putUserByIdController = new PutUserByIdController(updateUserService);
 
+const deleteUserService = new DeleteUserService(userRepository);
+const deleteUserByIdController = new DeleteUserByIdController(
+    deleteUserService
+);
+
 module.exports = {
     getUserByIdController,
     postNewUserController,
     putUserByIdController,
+    deleteUserByIdController,
 };
