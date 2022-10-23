@@ -2,16 +2,15 @@ const { Router } = require('../../config/app');
 
 const UserRouter = Router();
 
-UserRouter.get('/user', async (req, res) => {
-    res.send('Get Users');
-});
+const { getUserByIdController } = require('../composer/user.compose');
+
 UserRouter.get('/user/:id', async (req, res) => {
-    res.send('Get user by id');
+    await getUserByIdController.execute(req, res);
 });
 UserRouter.post('/user', (req, res) => {
     res.send('Create user');
 });
-UserRouter.put('/user', (req, res) => {
+UserRouter.put('/user/:id', (req, res) => {
     res.send('Update user');
 });
 UserRouter.delete('/user/:id', (req, res) => {
