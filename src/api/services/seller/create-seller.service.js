@@ -12,14 +12,11 @@ module.exports = class CreateSellerService {
                 phone,
                 email,
                 password,
+                address,
                 distribution,
                 payment,
                 category,
-                address,
             } = params;
-
-            // const { city, state, country, street, number, zipCode } =
-            //     params.address;
 
             if (!name) throw new Error('Missing name');
             if (!desc) throw new Error('Missing desc');
@@ -31,10 +28,23 @@ module.exports = class CreateSellerService {
             if (!payment) throw new Error('Missing payment');
             if (!category) throw new Error('Missing category');
 
-            return {
-                id: generateId(),
-                ...params,
-            };
+            const user = await this.repository.create({
+                sellerId: generateId(),
+                contact: {
+                    name,
+                    desc,
+                    phone,
+                    email,
+                    password,
+                },
+                address,
+                distribution,
+                payment,
+                category,
+                history: [],
+                rating: '0',
+            });
+            return user;
         } catch (error) {
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })
