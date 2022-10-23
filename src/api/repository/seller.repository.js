@@ -1,18 +1,38 @@
 module.exports = class SellerRepository {
     constructor() {}
-    async create() {
+    async create(params) {
         try {
-            return 'create seller';
-        } catch (error) {
-            return error;
-        }
+            const sellerId = params.sellerId;
+            const contact = params.contact;
+            const distribution = params.distribution;
+            const payment = params.payment;
+            const address = params.address;
+            const category = params.category;
+
+            return {
+                sellerId,
+                contact: {
+                    name: contact.name,
+                    desc: contact.desc,
+                    phone: {
+                        number: contact.phone.number,
+                        isWpp: contact.phone.isWpp,
+                    },
+                    email: contact.email,
+                },
+                address,
+                distribution,
+                payment,
+                category,
+                history: [],
+                rating: 0,
+            };
+        } catch (error) {}
     }
     async update() {
         try {
             return 'update seller';
-        } catch (error) {
-            return error;
-        }
+        } catch (error) {}
     }
     async getAll() {
         try {
@@ -155,29 +175,21 @@ module.exports = class SellerRepository {
                     rating: '4,8',
                 },
             ];
-        } catch (error) {
-            return error;
-        }
+        } catch (error) {}
     }
     async getByTag() {
         try {
             return 'get seller by tag';
-        } catch (error) {
-            return error;
-        }
+        } catch (error) {}
     }
     async getById() {
         try {
             return 'get seller by id';
-        } catch (error) {
-            return error;
-        }
+        } catch (error) {}
     }
     async delete() {
         try {
             return 'delete seller';
-        } catch (error) {
-            return error;
-        }
+        } catch (error) {}
     }
 };
