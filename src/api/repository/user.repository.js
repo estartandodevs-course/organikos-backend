@@ -22,9 +22,9 @@ module.exports = class UserRepository {
             return error;
         }
     }
-    async delete() {
+    async delete(id) {
         try {
-            return 'delete seller';
+            return `delete seller by id ${id}`;
         } catch (error) {
             return error;
         }
