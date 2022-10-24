@@ -41,8 +41,6 @@ module.exports = class CreateSellerService {
                 distribution,
                 payment,
                 category,
-                history: [],
-                rating: '0',
             });
             return user;
         } catch (error) {
