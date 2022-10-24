@@ -1,8 +1,9 @@
 module.exports = class UserRepository {
     constructor() {}
-    async create() {
+    async create(user) {
         try {
-            return 'create seller';
+            console.log(user);
+            return user;
         } catch (error) {
             return error;
         }
