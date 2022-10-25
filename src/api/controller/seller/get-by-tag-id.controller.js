@@ -4,7 +4,8 @@ module.exports = class GetSellerByTagController {
     }
     async execute(req, res) {
         try {
-            const seller = await this.seller.getByTag();
+            const { id_tag } = req.params;
+            const seller = await this.seller.getByTag(id_tag);
             res.status(200).send(JSON.stringify(seller));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
