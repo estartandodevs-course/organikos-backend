@@ -4,7 +4,8 @@ module.exports = class GetSellerByIdController {
     }
     async execute(req, res) {
         try {
-            const seller = await this.seller.getById();
+            const { id } = req.params;
+            const seller = await this.seller.getById(id);
             res.status(200).send(JSON.stringify(seller));
         } catch (error) {
             const errorObj = JSON.parse(error.message);

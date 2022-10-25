@@ -1,9 +1,11 @@
+const isValidUUID = require('../../helpers/uuid-validator.helper');
 module.exports = class GetSellerByIdService {
     constructor(repository) {
         this.repository = repository;
     }
-    async getById() {
+    async getById(id) {
         try {
+            if (!isValidUUID(id)) throw new Error('Id is not a valid uuid id');
             return {
                 sellerId: '123e4567-e89b-12d3-a456-426614174000',
                 name: 'Horta da Dona Clara',
