@@ -4,7 +4,9 @@ module.exports = class DeleteSellerByIdController {
     }
     async execute(req, res) {
         try {
-            const seller = await this.seller.delete(req.body);
+            const { id } = req.params;
+
+            const seller = await this.seller.delete(id);
             res.status(204).send(JSON.stringify(seller));
         } catch (error) {
             const errorObj = JSON.parse(error.message);

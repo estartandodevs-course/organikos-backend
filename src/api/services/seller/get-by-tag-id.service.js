@@ -2,8 +2,9 @@ module.exports = class GetSellerByTagService {
     constructor(repository) {
         this.repository = repository;
     }
-    async getByTag() {
+    async getByTag(id) {
         try {
+            if (!id) throw new Error('Id is not a valid uuid id');
             return [
                 {
                     sellerId: '123e4567-e89b-12d3-a456-426614174000',

@@ -1,12 +1,12 @@
-module.exports = class GetSellerByTagController {
+module.exports = class GetUserByIdController {
     constructor(service) {
-        this.seller = service;
+        this.user = service;
     }
     async execute(req, res) {
         try {
-            const { id_tag } = req.params;
-            const seller = await this.seller.getByTag(id_tag);
-            res.status(200).send(JSON.stringify(seller));
+            const { id } = req.params;
+            const user = await this.user.getById(id);
+            res.status(200).send(JSON.stringify(user));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
             if (errorObj.statusCode) {

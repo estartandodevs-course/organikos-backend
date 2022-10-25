@@ -1,46 +1,30 @@
 const generateId = require('../../helpers/id-generator.helper');
 
-module.exports = class CreateSellerService {
+module.exports = class CreateUserService {
     constructor(repository) {
         this.repository = repository;
     }
     async create(params) {
         try {
-            const {
-                name,
-                desc,
-                phone,
-                email,
-                password,
-                address,
-                distribution,
-                payment,
-                category,
-            } = params;
+            const { name, phone, email, password, address, profile } = params;
 
             if (!name) throw new Error('Missing name');
-            if (!desc) throw new Error('Missing desc');
             if (!phone) throw new Error('Missing phone');
             if (!email) throw new Error('Missing email');
             if (!password) throw new Error('Missing password');
             if (!address) throw new Error('Missing address');
-            if (!distribution) throw new Error('Missing distribution');
-            if (!payment) throw new Error('Missing payment');
-            if (!category) throw new Error('Missing category');
+            if (!profile) throw new Error('Missing profile');
 
             const user = await this.repository.create({
-                sellerId: generateId(),
+                userId: generateId(),
                 contact: {
                     name,
-                    desc,
                     phone,
                     email,
                     password,
+                    address,
                 },
-                address,
-                distribution,
-                payment,
-                category,
+                profile,
             });
             return user;
         } catch (error) {

@@ -1,4 +1,4 @@
-const { Router } = require('../../../config/app');
+const { Router } = require('../../config/app');
 const {
     getAllSellerController,
     postNewSellerController,
@@ -6,7 +6,7 @@ const {
     getSellerByTagController,
     getSellerByIdController,
     deleteSellerByIdController,
-} = require('../../../api/composer/seller.compose');
+} = require('../composer/seller.compose');
 
 const SellerRouter = Router();
 
