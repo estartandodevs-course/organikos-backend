@@ -1,8 +1,9 @@
+const isValidUUID = require('../../helpers/uuid-validator.helper');
 module.exports = class UpdateSellerService {
     constructor(repository) {
         this.repository = repository;
     }
-    async update(params) {
+    async update(params, id) {
         try {
             const {
                 name,
@@ -19,6 +20,7 @@ module.exports = class UpdateSellerService {
             // const { city, state, country, street, number, zipCode } =
             //     params.address;
 
+            if (!isValidUUID(id)) throw new Error('Id is not a valid uuid id');
             if (!name) throw new Error('Missing name');
             if (!desc) throw new Error('Missing desc');
             if (!phone) throw new Error('Missing phone');
