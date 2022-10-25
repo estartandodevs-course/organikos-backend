@@ -4,7 +4,8 @@ module.exports = class PutSellerByIdController {
     }
     async execute(req, res) {
         try {
-            const seller = await this.seller.update(req.body);
+            const { id } = req.params;
+            const seller = await this.seller.update(req.body, id);
             res.status(204).send(JSON.stringify(seller));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
