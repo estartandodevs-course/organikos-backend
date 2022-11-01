@@ -5,7 +5,7 @@ const {
     GetSellerByTagController,
     GetSellerByIdController,
     DeleteSellerByIdController,
-} = require('../controller/seller/index');
+} = require('../controllers/seller/index');
 
 const {
     CreateSellerService,
@@ -16,7 +16,7 @@ const {
     DeleteSellerService,
 } = require('../services/seller/index');
 
-const SellerRepository = require('../repository/seller.repository');
+const SellerRepository = require('../repositories/seller.repository');
 const sellerRepository = new SellerRepository();
 
 const createSellerService = new CreateSellerService(sellerRepository);

@@ -3,7 +3,7 @@ const {
     PostNewUserController,
     PutUserByIdController,
     DeleteUserByIdController,
-} = require('../controller/user/index');
+} = require('../controllers/user/index');
 
 const {
     GetUserByIdService,
@@ -12,7 +12,7 @@ const {
     DeleteUserService,
 } = require('../services/user/index');
 
-const UserRepository = require('../repository/user.repository');
+const UserRepository = require('../repositories/user.repository');
 const userRepository = new UserRepository();
 
 const getUserByIdService = new GetUserByIdService(userRepository);
