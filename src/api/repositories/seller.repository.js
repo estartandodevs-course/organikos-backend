@@ -2,41 +2,41 @@ const Seller = require('./models/Seller');
 
 module.exports = class SellerRepository {
     constructor() {}
-    async create() {
+    async create({ name, email }) {
         try {
-            const { name, email } = req.body;
-            const seller = await Seller.create({ name, email });
+            await Seller.create({ name, email });
         } catch (error) {}
     }
     async update() {
         try {
-            return 'update seller';
+            console.log('update seller');
         } catch (error) {}
     }
+
     async getAll() {
         try {
-            return [
+            console.log([
                 {
                     sellerId: '123e4567-e89b-12d3-a456-426614174000',
                     name: 'Horta do seu josé',
                     desc: 'Aqui você encontra os melhores legumes',
                 },
-            ];
+            ]);
         } catch (error) {}
     }
     async getByTag() {
         try {
-            return 'get seller by tag';
+            console.log('get seller by tag');
         } catch (error) {}
     }
     async getById() {
         try {
-            return 'get seller by id';
+            console.log('get seller by id');
         } catch (error) {}
     }
     async delete() {
         try {
-            return 'delete seller';
+            console.log('delete seller');
         } catch (error) {}
     }
 };

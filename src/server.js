@@ -1,6 +1,6 @@
 const { app } = require('./config/app');
 require('dotenv').config();
-require('./api/repository/database/index');
+require('./api/database/index');
 
 const port = process.env.PORT || 3001;
 const {
