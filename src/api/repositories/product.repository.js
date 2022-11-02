@@ -1,4 +1,4 @@
-const Product = require('../database/models/seller.model');
+const Product = require('../database/models/product.model');
 
 module.exports = class ProductRepository {
     constructor() {}
