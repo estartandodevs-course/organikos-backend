@@ -16,6 +16,7 @@ module.exports = class CreateSellerService {
                 distribution,
                 payment,
                 category,
+                certificate,
             } = params;
 
             if (!name) throw new Error('Missing name');
@@ -27,9 +28,11 @@ module.exports = class CreateSellerService {
             if (!distribution) throw new Error('Missing distribution');
             if (!payment) throw new Error('Missing payment');
             if (!category) throw new Error('Missing category');
+
             const { number, isWpp } = phone;
             const id = generateId();
             const wwp = isWpp ? 1 : 0;
+            const cert = certificate ? 1 : 0;
 
             const paymentToString = payment.join();
             const distributionToString = distribution.join();
@@ -46,6 +49,7 @@ module.exports = class CreateSellerService {
                 delivery: distributionToString,
                 tag: categoryToString,
                 wpp: wwp,
+                certificate: cert,
             });
 
             return {
@@ -58,6 +62,7 @@ module.exports = class CreateSellerService {
                 delivery: seller.delivery.split(','),
                 tag: seller.tag.split(','),
                 wpp: seller.wpp == 1 ? true : false,
+                certificate: seller.certificate == 1 ? true : false,
             };
         } catch (error) {
             throw new Error(

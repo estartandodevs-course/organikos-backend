@@ -12,6 +12,7 @@ module.exports = class SellerRepository {
         delivery,
         tag,
         wpp,
+        certificate,
     }) {
         try {
             return await Seller.create({
@@ -24,6 +25,7 @@ module.exports = class SellerRepository {
                 delivery,
                 tag,
                 wpp,
+                certificate,
             });
         } catch (error) {
             throw new Error(error);

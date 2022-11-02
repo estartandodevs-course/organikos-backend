@@ -40,5 +40,5 @@ const Seller = sequelize.define('seller', {
         allowNull: false,
     },
 });
-// Seller.sync();
+// Seller.sync();:
 module.exports = Seller;
