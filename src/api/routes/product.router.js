@@ -4,6 +4,7 @@ const ProductRouter = Router();
 
 const {
     getProductBySellerIdController,
+    createProductController,
 } = require('../composer/product.compose');
 
 ProductRouter.get('/products?', async (req, res) => {
@@ -12,8 +13,8 @@ ProductRouter.get('/products?', async (req, res) => {
 ProductRouter.get('/product/:id_seller', async (req, res) => {
     getProductBySellerIdController.execute(req, res);
 });
-ProductRouter.post('/product/:id_seller', (req, res) => {
-    res.send('Create product');
+ProductRouter.post('/product/:id_seller', async (req, res) => {
+    createProductController.execute(req, res);
 });
 
 module.exports = ProductRouter;
