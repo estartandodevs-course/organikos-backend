@@ -4,7 +4,8 @@ module.exports = class PostNewProductController {
     }
     async execute(req, res) {
         try {
-            const product = await this.product.create(req.body);
+            const { id_seller } = req.params;
+            const product = await this.product.create(req.body, id_seller);
             res.status(201).send(JSON.stringify(product));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
