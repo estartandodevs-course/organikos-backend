@@ -6,23 +6,7 @@ module.exports = class GetSellerByIdService {
     async getById(id) {
         try {
             if (!isValidUUID(id)) throw new Error('Id is not a valid uuid id');
-            return {
-                sellerId: '123e4567-e89b-12d3-a456-426614174000',
-                name: 'Horta da Dona Clara',
-                desc: 'Aqui você encontra os melhores legumes',
-                phone: '1181239856',
-                email: 'horta@email.com',
-                distribution: ['Delivery', 'Assinatura', 'Retirada'],
-                payment: ['Dinheiro', 'Cartao', 'Pix'],
-                category: [
-                    'Frutas',
-                    'Granja',
-                    'Horta',
-                    'Carne',
-                    'Laticinio',
-                    'Outros',
-                ],
-            };
+            return await this.repository.getById(id);
         } catch (error) {
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })
