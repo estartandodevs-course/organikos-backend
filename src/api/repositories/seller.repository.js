@@ -1,38 +1,61 @@
-const Seller = require('../database/models/Seller');
+const Seller = require('../database/models/seller.model');
 
 module.exports = class SellerRepository {
     constructor() {}
-    async create({ name, email }) {
+    async create({
+        id,
+        name,
+        email,
+        password,
+        desc,
+        payment,
+        delivery,
+        tag,
+        wpp,
+    }) {
         try {
-            await Seller.create({ name, email });
-        } catch (error) {}
+            return await Seller.create({
+                id,
+                name,
+                email,
+                password,
+                desc,
+                payment,
+                delivery,
+                tag,
+                wpp,
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
+
+    async getAll() {
+        try {
+            return await Seller.findAll();
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     async update() {
         try {
             console.log('update seller');
         } catch (error) {}
     }
 
-    async getAll() {
-        try {
-            console.log([
-                {
-                    sellerId: '123e4567-e89b-12d3-a456-426614174000',
-                    name: 'Horta do seu josé',
-                    desc: 'Aqui você encontra os melhores legumes',
-                },
-            ]);
-        } catch (error) {}
-    }
     async getByTag() {
         try {
             console.log('get seller by tag');
         } catch (error) {}
     }
-    async getById() {
+    async getById(id) {
         try {
-            console.log('get seller by id');
-        } catch (error) {}
+            console.log(id);
+            return await Seller.findByPk(id);
+        } catch (error) {
+            return error;
+        }
     }
     async delete() {
         try {
