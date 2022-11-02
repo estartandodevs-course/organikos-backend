@@ -34,4 +34,11 @@ module.exports = class ProductRepository {
             throw new Error(error);
         }
     }
+    async getByName(name) {
+        try {
+            return await Product.findAll({ where: { name: name } });
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 };
