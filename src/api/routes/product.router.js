@@ -2,20 +2,23 @@ const { Router } = require('../../config/app');
 
 const ProductRouter = Router();
 
-ProductRouter.get('/product', async (req, res) => {
+const {
+    getProductBySellerIdController,
+    createProductController,
+    getProductByNameController,
+} = require('../composer/product.compose');
+
+ProductRouter.get('/products?', async (req, res) => {
     res.send('Get Products');
 });
-ProductRouter.get('/product/:id', async (req, res) => {
-    res.send('Get product by id');
+ProductRouter.get('/product/:id_seller', async (req, res) => {
+    getProductBySellerIdController.execute(req, res);
 });
-ProductRouter.post('/product', (req, res) => {
-    res.send('Create product');
+ProductRouter.get('/product/name/:name', async (req, res) => {
+    getProductByNameController.execute(req, res);
 });
-ProductRouter.put('/product', (req, res) => {
-    res.send('Update product');
-});
-ProductRouter.delete('/product/:id', (req, res) => {
-    res.send('Delete product');
+ProductRouter.post('/product/:id_seller', async (req, res) => {
+    createProductController.execute(req, res);
 });
 
 module.exports = ProductRouter;

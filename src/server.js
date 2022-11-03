@@ -1,6 +1,15 @@
 const { app } = require('./config/app');
 require('dotenv').config();
-require('./api/database/index');
+
+const sequelize = require('./config/database');
+
+//fazer conexão com o banco de dados
+try {
+    sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+} catch (error) {
+    console.error('Unable to connect to the database:', error);
+}
 
 const port = process.env.PORT || 3001;
 const {

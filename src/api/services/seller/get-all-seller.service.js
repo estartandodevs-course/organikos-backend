@@ -4,6 +4,7 @@ module.exports = class GetAllSellerService {
     }
     async getAll() {
         try {
+            console.log('oi');
             return await this.repository.getAll();
         } catch (error) {
             throw new Error(

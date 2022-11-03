@@ -4,29 +4,25 @@ module.exports = class UserRepository {
         try {
             return user;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     }
     async update() {
         try {
             return 'update seller';
-        } catch (error) {
-            return error;
-        }
+        } catch (error) {}
     }
 
     async getById() {
         try {
-            return 'get seller by id';
-        } catch (error) {
-            return error;
-        }
+            throw new Error('get seller by id');
+        } catch (error) {}
     }
     async delete(id) {
         try {
             return `delete seller by id ${id}`;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     }
 };
