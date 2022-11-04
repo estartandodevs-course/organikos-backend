@@ -13,7 +13,6 @@ module.exports = class CreateSellerService {
                 phone,
                 email,
                 password,
-                // address,
                 distribution,
                 payment,
                 category,

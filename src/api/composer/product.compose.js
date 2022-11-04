@@ -1,5 +1,5 @@
 const ProductRepository = require('../repositories/product.repository');
-const repository = new ProductRepository();
+const productRepository = new ProductRepository();
 
 const {
     GetProductBySellerIdService,
@@ -15,22 +15,24 @@ const {
     GetProductByTagController,
 } = require('../controllers/product/index');
 
-const getProductBySellerIdService = new GetProductBySellerIdService(repository);
+const getProductBySellerIdService = new GetProductBySellerIdService(
+    productRepository
+);
 const getProductBySellerIdController = new GetProductBySellerIdController(
     getProductBySellerIdService
 );
 
-const createProductService = new CreateProductService(repository);
+const createProductService = new CreateProductService(productRepository);
 const createProductController = new PostNewProductController(
     createProductService
 );
 
-const getProductByNameService = new GetProductByNameService(repository);
+const getProductByNameService = new GetProductByNameService(productRepository);
 const getProductByNameController = new GetProductByNameController(
     getProductByNameService
 );
 
-const getProductByTagService = new GetProductByTagService(repository);
+const getProductByTagService = new GetProductByTagService(productRepository);
 const getProductByTagController = new GetProductByTagController(
     getProductByTagService
 );
@@ -40,4 +42,5 @@ module.exports = {
     createProductController,
     getProductByNameController,
     getProductByTagController,
+    productRepository,
 };
