@@ -7,7 +7,7 @@ module.exports = class DeleteSellerByIdController {
             const { id } = req.params;
 
             const seller = await this.seller.delete(id);
-            res.status(204).send(JSON.stringify(seller));
+            res.status(200).send(JSON.stringify(seller));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
             if (errorObj.statusCode) {

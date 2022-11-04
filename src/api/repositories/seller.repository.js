@@ -59,9 +59,15 @@ module.exports = class SellerRepository {
             return error;
         }
     }
-    async delete() {
+    async delete(id) {
         try {
-            console.log('delete seller');
-        } catch (error) {}
+            return await Seller.destroy({
+                where: {
+                    id,
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 };
