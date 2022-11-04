@@ -5,6 +5,7 @@ module.exports = class CreateSellerService {
         this.repository = repository;
     }
     async create(params) {
+        console.log(params);
         try {
             const {
                 name,

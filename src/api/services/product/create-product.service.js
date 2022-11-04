@@ -15,11 +15,11 @@ module.exports = class CreateProductService {
 
             const productObj = {
                 id_seller: seller_id,
-                name: name,
+                name: name.toLowerCase(),
                 price: price,
-                measure: measure,
+                measure: measure.toLowerCase(),
                 status: status,
-                category: category,
+                category: category.toLowerCase(),
             };
 
             const product = await this.repository.create(productObj);
