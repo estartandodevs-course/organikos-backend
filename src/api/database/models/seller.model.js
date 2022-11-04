@@ -39,6 +39,14 @@ const Seller = sequelize.define('seller', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    certificate: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
 });
-// Seller.sync()
+// Seller.sync();
 module.exports = Seller;
