@@ -7,7 +7,8 @@ module.exports = class GetSellerByIdService {
     async getById(id) {
         try {
             if (!isValidUUID(id)) throw new Error('Id is not a valid uuid id');
-            const user = await this.sellerRepository.getById(id);
+            const { seller, address } = await this.sellerRepository.getById(id);
+
             const products = await this.productRepository.getById(id);
             const productsMap = products.map((product) => {
                 return {
@@ -20,20 +21,28 @@ module.exports = class GetSellerByIdService {
                 };
             });
 
-            const payment = user.payment.split(',');
-            const delivery = user.delivery.split(',');
-            const tag = user.tag.split(',');
-            const userObj = {
-                sellerId: user.id,
+            const payment = seller.payment.split(',');
+            const delivery = seller.delivery.split(',');
+            const tag = seller.tag.split(',');
+            const sellerObj = {
+                sellerId: seller.id,
                 contact: {
-                    name: user.name,
-                    email: user.email,
-                    desc: user.desc,
+                    name: seller.name,
+                    email: seller.email,
+                    desc: seller.desc,
                     phone: {
-                        number: user.phone,
-                        isWpp: user.wpp == 1 ? true : false,
+                        number: seller.phone,
+                        isWpp: seller.wpp == 1 ? true : false,
                     },
-                    address: {},
+                    address: {
+                        city: address.city,
+                        state: address.state,
+                        country: address.country,
+                        street: address.street,
+                        number: address.number,
+                        complement: address.complement,
+                        zipCode: address.zip_code,
+                    },
                 },
                 distribution: delivery,
                 payment: payment,
@@ -41,10 +50,10 @@ module.exports = class GetSellerByIdService {
                 history: [],
                 products: productsMap,
                 rating: '5',
-                certificate: user.certificate == 1 ? true : false,
+                certificate: seller.certificate == 1 ? true : false,
             };
 
-            return userObj;
+            return sellerObj;
         } catch (error) {
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })

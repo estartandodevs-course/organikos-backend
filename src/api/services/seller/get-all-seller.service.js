@@ -21,12 +21,10 @@ module.exports = class GetAllSellerService {
                             isWpp: user.wpp == 1 ? true : false,
                         },
                     },
-                    adress: {},
                     distribution: delivery,
                     payment: payment,
                     category: tag,
-                    history: [],
-                    rating: '',
+                    rating: '5',
                     certificate: user.certificate == 1 ? true : false,
                 };
                 return userObj;
