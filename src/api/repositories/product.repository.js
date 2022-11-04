@@ -60,4 +60,20 @@ module.exports = class ProductRepository {
             });
         } catch (error) {}
     }
+
+    async update(product) {
+        try {
+            const { id, name, price, measure, status, category } = product;
+            const productObj = {
+                name: name,
+                price: price,
+                measure: measure,
+                status: status,
+                category: category,
+            };
+            return await Product.update(productObj, { where: { id: id } });
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
 };

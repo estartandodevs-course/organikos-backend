@@ -1,12 +1,12 @@
-module.exports = class CreateProductService {
+module.exports = class UpdateProductService {
     constructor(repository) {
         this.repository = repository;
     }
-    async create(params, seller_id) {
+    async update(params) {
         try {
-            const { name, price, measure, status, category } = params;
+            const { id, name, price, measure, status, category } = params;
 
-            if (!seller_id) throw new Error('Missing seller_id');
+            if (!id) throw new Error('Missing id');
             if (!name) throw new Error('Missing name');
             if (!price) throw new Error('Missing price');
             if (!measure) throw new Error('Missing measure');
@@ -14,7 +14,7 @@ module.exports = class CreateProductService {
             if (!category) throw new Error('Missing category');
 
             const productObj = {
-                id_seller: seller_id,
+                id: id,
                 name: name,
                 price: +price,
                 measure: measure.toLowerCase(),
@@ -22,13 +22,13 @@ module.exports = class CreateProductService {
                 category: category.toLowerCase(),
             };
 
-            const product = await this.repository.create(productObj);
+            const product = await this.repository.update(productObj);
 
             return {
                 id: product.id,
                 seller_id: product.id_seller,
                 name: product.name,
-                price: product.price.toString(),
+                price: product.price,
                 measure: product.measure,
                 status: product.status == 1 ? true : false,
                 category: product.category,
