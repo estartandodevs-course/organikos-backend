@@ -6,6 +6,7 @@ const {
     CreateProductService,
     GetProductByNameService,
     GetProductByTagService,
+    UpdateProductService,
 } = require('../services/product/index');
 
 const {
@@ -13,6 +14,7 @@ const {
     PostNewProductController,
     GetProductByNameController,
     GetProductByTagController,
+    PutProductController,
 } = require('../controllers/product/index');
 
 const getProductBySellerIdService = new GetProductBySellerIdService(
@@ -37,10 +39,14 @@ const getProductByTagController = new GetProductByTagController(
     getProductByTagService
 );
 
+const updateProductService = new UpdateProductService(productRepository);
+const updateProductController = new PutProductController(updateProductService);
+
 module.exports = {
     getProductBySellerIdController,
     createProductController,
     getProductByNameController,
     getProductByTagController,
     productRepository,
+    updateProductController,
 };
