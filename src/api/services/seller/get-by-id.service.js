@@ -34,14 +34,14 @@ module.exports = class GetSellerByIdService {
                         isWpp: user.wpp == 1 ? true : false,
                     },
                     address: {},
-                    distribution: delivery,
-                    payment: payment,
-                    category: tag,
-                    history: [],
-                    products: productsMap,
-                    rating: '5',
-                    certificate: user.certificate == 1 ? true : false,
                 },
+                distribution: delivery,
+                payment: payment,
+                category: tag,
+                history: [],
+                products: productsMap,
+                rating: '5',
+                certificate: user.certificate == 1 ? true : false,
             };
 
             return userObj;
