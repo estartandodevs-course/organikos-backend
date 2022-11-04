@@ -15,7 +15,7 @@ ProductRouter.get('/products?', async (req, res) => {
 ProductRouter.get('/product/:id_seller', async (req, res) => {
     getProductBySellerIdController.execute(req, res);
 });
-ProductRouter.get('/product/name/:name', async (req, res) => {
+ProductRouter.get('/products/filter?', async (req, res) => {
     getProductByNameController.execute(req, res);
 });
 ProductRouter.post('/product/:id_seller', async (req, res) => {
