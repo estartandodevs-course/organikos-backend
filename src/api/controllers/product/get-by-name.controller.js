@@ -4,7 +4,7 @@ module.exports = class GetProductByNameController {
     }
     async execute(req, res) {
         try {
-            const { name } = req.params;
+            const { name } = req.query;
             const product = await this.product.getByName(name);
             res.status(200).send(JSON.stringify(product));
         } catch (error) {
