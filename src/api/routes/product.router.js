@@ -6,10 +6,11 @@ const {
     getProductBySellerIdController,
     createProductController,
     getProductByNameController,
+    getProductByTagController,
 } = require('../composer/product.compose');
 
 ProductRouter.get('/products?', async (req, res) => {
-    res.send('Get Products');
+    getProductByTagController.execute(req, res);
 });
 ProductRouter.get('/product/:id_seller', async (req, res) => {
     getProductBySellerIdController.execute(req, res);

@@ -48,4 +48,16 @@ module.exports = class ProductRepository {
             throw new Error(error);
         }
     }
+    async getByTag(params) {
+        const tags = params.split(',');
+        console.log(tags);
+        try {
+            return await Product.findAll({
+                where: {
+                    category: { [Op.in]: tags },
+                },
+                raw: true,
+            });
+        } catch (error) {}
+    }
 };
