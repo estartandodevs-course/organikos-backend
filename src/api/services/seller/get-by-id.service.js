@@ -12,17 +12,23 @@ module.exports = class GetSellerByIdService {
             const delivery = user.delivery.split(',');
             const tag = user.tag.split(',');
             const userObj = {
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                password: user.password,
-                desc: user.desc,
-                payment: payment,
-                delivery: delivery,
-                tag: tag,
-                wpp: user.wpp,
-                phone: user.phone,
-                certificate: user.certificate,
+                sellerId: user.id,
+                contact: {
+                    name: user.name,
+                    email: user.email,
+                    desc: user.desc,
+                    phone: {
+                        number: user.phone,
+                        isWpp: user.wpp == 1 ? true : false,
+                    },
+                    address: {},
+                    distribution: delivery,
+                    payment: payment,
+                    category: tag,
+                    history: [],
+                    rating: '5',
+                    certificate: user.certificate == 1 ? true : false,
+                },
             };
 
             console.log(userObj);
