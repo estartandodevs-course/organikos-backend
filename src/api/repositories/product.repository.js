@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Product = require('../database/models/product.model');
 
 module.exports = class ProductRepository {
@@ -35,8 +36,14 @@ module.exports = class ProductRepository {
         }
     }
     async getByName(name) {
+        const letter = name.charAt(0).toLowerCase();
         try {
-            return await Product.findAll({ where: { name: name } });
+            return await Product.findAll({
+                where: {
+                    name: { [Op.like]: `${letter}%` },
+                },
+                raw: true,
+            });
         } catch (error) {
             throw new Error(error);
         }

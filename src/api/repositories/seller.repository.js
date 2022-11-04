@@ -8,6 +8,7 @@ module.exports = class SellerRepository {
         email,
         password,
         desc,
+        phone,
         payment,
         delivery,
         tag,
@@ -25,6 +26,7 @@ module.exports = class SellerRepository {
                 delivery,
                 tag,
                 wpp,
+                phone,
                 certificate,
             });
         } catch (error) {
@@ -54,9 +56,11 @@ module.exports = class SellerRepository {
     async getById(id) {
         try {
             console.log(id);
-            return await Seller.findByPk(id);
+            const user = await Seller.findByPk(id);
+            if (!user) throw new Error('User not found');
+            return user;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     }
     async delete(id) {
