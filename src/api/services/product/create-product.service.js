@@ -16,7 +16,7 @@ module.exports = class CreateProductService {
             const productObj = {
                 id_seller: seller_id,
                 name: name.toLowerCase(),
-                price: price,
+                price: +price,
                 measure: measure.toLowerCase(),
                 status: status,
                 category: category.toLowerCase(),
@@ -28,9 +28,9 @@ module.exports = class CreateProductService {
                 id: product.id,
                 seller_id: product.id_seller,
                 name: product.name,
-                price: product.price,
+                price: product.price.toString(),
                 measure: product.measure,
-                status: product.status,
+                status: product.status == 1 ? 'active' : 'inactive',
                 category: product.category,
             };
         } catch (error) {

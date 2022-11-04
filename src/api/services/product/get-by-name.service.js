@@ -10,9 +10,9 @@ module.exports = class GetProductByNameService {
                     id: product.id,
                     seller_id: product.id_seller,
                     name: product.name,
-                    price: product.price,
+                    price: product.price.toString(),
                     measure: product.measure,
-                    status: product.status,
+                    status: product.status == 1 ? 'active' : 'inactive',
                     category: product.category,
                 };
             });
