@@ -30,7 +30,7 @@ module.exports = class CreateProductService {
                 name: product.name,
                 price: product.price.toString(),
                 measure: product.measure,
-                status: product.status == 1 ? 'active' : 'inactive',
+                status: product.status == 1 ? true : false,
                 category: product.category,
             };
         } catch (error) {
