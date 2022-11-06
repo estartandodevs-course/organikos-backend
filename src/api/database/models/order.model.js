@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../../config/database');
 
-const Product = sequelize.define('product', {
+const Order = sequelize.define('order', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -12,22 +12,27 @@ const Product = sequelize.define('product', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    name: {
+    id_user: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    status: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    price: {
-        type: DataTypes.DECIMAL,
+    total_price: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
     },
-    measure: {
+    payment: {
         type: DataTypes.STRING,
+        allowNull: false,
     },
-    status: {
-        type: DataTypes.INTEGER,
-    },
-    category: {
+    distribution: {
         type: DataTypes.STRING,
+        allowNull: false,
     },
 });
-// Product.sync();
-module.exports = Product;
+
+// Order.sync();
+module.exports = Order;
