@@ -29,7 +29,25 @@ async function createSellerAddress(address, id) {
     }
 }
 
+async function createUserAddress(address, id) {
+    try {
+        return await Address.create({
+            id_users: id,
+            street: address.street,
+            number: address.number,
+            complement: address.complement,
+            city: address.city,
+            state: address.state,
+            zip_code: address.zipCode,
+            country: address.country,
+        });
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 module.exports = {
     findSellerAddress,
     createSellerAddress,
+    createUserAddress,
 };

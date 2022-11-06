@@ -1,24 +1,26 @@
-const User = require('../models/user.model');
-const Address = require('../models/address.model');
-
+const User = require('../database/models/user.model');
+const { createUserAddress } = require('../repositories/address.repository');
 module.exports = class UserRepository {
     constructor() {}
     async create(user, address) {
+        console.log('user', user);
+        console.log('address', address);
         try {
             const { userId, name, phone, email, password } = user;
             const { street, number, complement, city, state, zipCode } =
                 address;
 
             return User.create({
-                userId,
+                id: userId,
                 name,
                 phone,
                 email,
                 password,
             })
                 .then(async (user) => {
-                    const address = await Address.create({
-                        userId: user.userId,
+                    console.log('user', user);
+                    const address_ = await createUserAddress({
+                        id_users: user.id,
                         street,
                         number,
                         complement,
@@ -26,7 +28,7 @@ module.exports = class UserRepository {
                         state,
                         zipCode,
                     });
-                    return { user, address };
+                    return { user, address_ };
                 })
                 .catch((error) => {
                     throw new Error(error);
@@ -37,8 +39,10 @@ module.exports = class UserRepository {
     }
     async update() {
         try {
-            return 'update seller';
-        } catch (error) {}
+            throw new Error('no implemented');
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     async getById() {

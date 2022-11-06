@@ -14,7 +14,7 @@ module.exports = class CreateUserService {
             if (!password) throw new Error('Missing password');
             // if (!address) throw new Error('Missing address');
 
-            const user = await this.repository.create(
+            const { user, address_ } = await this.repository.create(
                 {
                     userId: generateId(),
                     name,
@@ -24,7 +24,21 @@ module.exports = class CreateUserService {
                 },
                 address
             );
-            return user;
+            return {
+                id: user.id,
+                name: user.name,
+                phone: user.phone,
+                email: user.email,
+                address: {
+                    street: address_.street,
+                    number: address_.number,
+                    complement: address_.complement,
+                    city: address_.city,
+                    state: address_.state,
+                    zipCode: address_.zip_code,
+                    country: address_.country,
+                },
+            };
         } catch (error) {
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })
