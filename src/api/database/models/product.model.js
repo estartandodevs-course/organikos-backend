@@ -5,12 +5,8 @@ const Product = sequelize.define('product', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        allowNuSequelizell: false,
-        primaryKey: true,
-    },
-    id_seller: {
-        type: DataTypes.STRING,
         allowNull: false,
+        primaryKey: true,
     },
     name: {
         type: DataTypes.STRING,
