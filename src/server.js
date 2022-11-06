@@ -1,7 +1,9 @@
+/* eslint-disable prettier/prettier */
 const { app } = require('./config/app');
 require('dotenv').config();
 
 const sequelize = require('./config/database');
+const cors = require('cors');
 
 //fazer conexão com o banco de dados
 try {
@@ -17,6 +19,13 @@ const {
     UserRouter,
     SellerRouter,
 } = require('./api/routes/index');
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    app.use(cors());
+    next();
+});
 
 app.use('/api', UserRouter, ProductRouter, SellerRouter);
 
