@@ -19,31 +19,11 @@ const User = sequelize.define('user', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    desc: {
+    phone: {
         type: DataTypes.STRING,
-        allowNull: false,
-    },
-    payment: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    delivery: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    tag: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    wpp: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    certificate: {
-        type: DataTypes.INTEGER,
         allowNull: false,
     },
 });
 
-User.sync();
+// User.sync();
 module.exports = User;
