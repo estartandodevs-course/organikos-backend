@@ -16,7 +16,7 @@ module.exports = class OrderRepository {
             return Order.create(orderObj)
                 .then((order) => {
                     products.forEach((product) => {
-                        console.log('product', product);
+                        console.log('order', order);
                         const order_product = {
                             id_order: order.id,
                             id_product: product.id_product,
