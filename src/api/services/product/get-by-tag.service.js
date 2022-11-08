@@ -1,10 +1,10 @@
-module.exports = class GetProductByNameService {
+module.exports = class GetProductByTagService {
     constructor(repository) {
         this.repository = repository;
     }
-    async getByName(name) {
+    async getByTag(params) {
         try {
-            const product = await this.repository.getByName(name);
+            const product = await this.repository.getByTag(params);
             const productMap = product.map((product) => {
                 return {
                     id: product.id,

@@ -1,29 +1,38 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../../config/database');
 
-const User = sequelize.define('user', {
+const Order = sequelize.define('order', {
     id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
     },
-    name: {
+    id_seller: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    email: {
+    id_user: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    status: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    password: {
+    total_price: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+    },
+    payment: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    phone: {
+    distribution: {
         type: DataTypes.STRING,
         allowNull: false,
     },
 });
 
-// User.sync();
-module.exports = User;
+// Order.sync();
+module.exports = Order;

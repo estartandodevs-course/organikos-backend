@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Product = require('../database/models/product.model');
 
 module.exports = class ProductRepository {
@@ -35,8 +36,42 @@ module.exports = class ProductRepository {
         }
     }
     async getByName(name) {
+        const letter = name.charAt(0).toLowerCase();
         try {
-            return await Product.findAll({ where: { name: name } });
+            return await Product.findAll({
+                where: {
+                    name: { [Op.like]: `${letter}%` },
+                },
+                raw: true,
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+    async getByTag(params) {
+        const tags = params.split(',');
+        console.log(tags);
+        try {
+            return await Product.findAll({
+                where: {
+                    category: { [Op.in]: tags },
+                },
+                raw: true,
+            });
+        } catch (error) {}
+    }
+
+    async update(product) {
+        try {
+            const { id, name, price, measure, status, category } = product;
+            const productObj = {
+                name: name,
+                price: price,
+                measure: measure,
+                status: status,
+                category: category,
+            };
+            return await Product.update(productObj, { where: { id: id } });
         } catch (error) {
             throw new Error(error);
         }

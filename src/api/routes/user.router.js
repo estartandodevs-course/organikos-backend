@@ -9,6 +9,8 @@ const {
     deleteUserByIdController,
 } = require('../composer/user.compose');
 
+const { postNewProductController } = require('../composer/order.compose');
+
 UserRouter.get('/user/:id', async (req, res) => {
     await getUserByIdController.execute(req, res);
 });
@@ -20,6 +22,10 @@ UserRouter.put('/user/:id', async (req, res) => {
 });
 UserRouter.delete('/user/:id', async (req, res) => {
     await deleteUserByIdController.execute(req, res);
+});
+
+UserRouter.post('/order', async (req, res) => {
+    await postNewProductController.execute(req, res);
 });
 
 module.exports = UserRouter;

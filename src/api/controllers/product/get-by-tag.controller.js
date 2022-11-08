@@ -1,11 +1,12 @@
-module.exports = class GetProductByNameController {
+module.exports = class GetProductByTagController {
     constructor(service) {
         this.product = service;
     }
     async execute(req, res) {
         try {
-            const { name } = req.query;
-            const product = await this.product.getByName(name);
+            const tags = req.query.category;
+            console.log(req.query);
+            const product = await this.product.getByTag(tags);
             res.status(200).send(JSON.stringify(product));
         } catch (error) {
             const errorObj = JSON.parse(error.message);

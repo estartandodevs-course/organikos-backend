@@ -1,21 +1,32 @@
 const Seller = require('../database/models/seller.model');
+const {
+    findSellerAddress,
+    createSellerAddress,
+} = require('./address.repository');
 
 module.exports = class SellerRepository {
     constructor() {}
-    async create({
-        id,
-        name,
-        email,
-        password,
-        desc,
-        payment,
-        delivery,
-        tag,
-        wpp,
-        certificate,
-    }) {
+    async create(
+        {
+            id,
+            name,
+            email,
+            password,
+            desc,
+            phone,
+            payment,
+            delivery,
+            tag,
+            wpp,
+            certificate,
+        },
+        _address
+    ) {
+        // console.log(_address);
         try {
-            return await Seller.create({
+            let address_;
+
+            const seller = Seller.create({
                 id,
                 name,
                 email,
@@ -25,15 +36,25 @@ module.exports = class SellerRepository {
                 delivery,
                 tag,
                 wpp,
+                phone,
                 certificate,
+                rating: 5,
+            }).then(async (seller) => {
+                address_ = await createSellerAddress(_address, seller.id);
+                console.log(seller, address_);
+                return await { seller, address_ };
             });
+
+            return await seller;
         } catch (error) {
-            throw new Error(error);
+            console.log(error);
         }
     }
 
     async getAll() {
         try {
+            // const address = await Address.findAll();
+            // console.log(address);
             return await Seller.findAll();
         } catch (error) {
             throw new Error(error);
@@ -52,16 +73,26 @@ module.exports = class SellerRepository {
         } catch (error) {}
     }
     async getById(id) {
+        console.log(id);
         try {
-            console.log(id);
-            return await Seller.findByPk(id);
+            const seller = await Seller.findByPk(id);
+            if (!seller) throw new Error('User not found');
+            const address_ = await findSellerAddress(id);
+            const address = address_.dataValues;
+            return { address, seller };
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     }
-    async delete() {
+    async delete(id) {
         try {
-            console.log('delete seller');
-        } catch (error) {}
+            return await Seller.destroy({
+                where: {
+                    id,
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 };

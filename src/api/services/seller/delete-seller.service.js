@@ -6,7 +6,7 @@ module.exports = class DeleteSellerService {
     async delete(id) {
         try {
             if (!isValidUUID(id)) throw new Error('Id is not a valid uuid id');
-            return 'delete seller';
+            await this.repository.delete(id);
         } catch (error) {
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })

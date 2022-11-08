@@ -12,7 +12,7 @@ module.exports = class CreateSellerService {
                 phone,
                 email,
                 password,
-                // address,
+                address,
                 distribution,
                 payment,
                 category,
@@ -38,33 +38,47 @@ module.exports = class CreateSellerService {
             const distributionToString = distribution.join();
             const categoryToString = category.join();
 
-            const seller = await this.repository.create({
-                id: id,
-                name: name,
-                email: email,
-                password: password,
-                phone: number,
-                desc: desc,
-                payment: paymentToString,
-                delivery: distributionToString,
-                tag: categoryToString,
-                wpp: wwp,
-                certificate: cert,
-            });
-
+            const { seller, address_ } = await this.repository.create(
+                {
+                    id: id,
+                    name: name,
+                    email: email,
+                    password: password,
+                    phone: number,
+                    desc: desc,
+                    payment: paymentToString,
+                    delivery: distributionToString,
+                    tag: categoryToString,
+                    wpp: wwp,
+                    certificate: cert,
+                },
+                address
+            );
+            console.log(seller);
             return {
                 id: seller.id,
                 name: seller.name,
                 email: seller.email,
                 phone: seller.phone,
                 desc: seller.desc,
+                address: {
+                    street: address_.street,
+                    number: address_.number,
+                    complement: address_.complement,
+                    city: address_.city,
+                    state: address_.state,
+                    zipCode: address_.zip_code,
+                    country: address_.country,
+                },
                 payment: seller.payment.split(','),
                 delivery: seller.delivery.split(','),
                 tag: seller.tag.split(','),
                 wpp: seller.wpp == 1 ? true : false,
                 certificate: seller.certificate == 1 ? true : false,
+                rating: '5',
             };
         } catch (error) {
+            console.log(error);
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })
             );
