@@ -10,9 +10,8 @@ app.get('/', (req, res) => {
 });
 
 const corsOptions = {
-    origin: '*',
+    origin: true,
     credentials: true,
-    optionSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
