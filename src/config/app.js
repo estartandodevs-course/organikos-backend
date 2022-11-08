@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 const corsOptions = {
-    origin: true,
+    origin: '*',
     credentials: true,
 };
 
