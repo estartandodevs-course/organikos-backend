@@ -11,20 +11,35 @@ module.exports = class UpdateUserService {
             if (!name) throw new Error('Missing name');
             if (!phone) throw new Error('Missing phone');
             if (!email) throw new Error('Missing email');
-            if (!password) throw new Error('Missing password');
             if (!address) throw new Error('Missing address');
 
-            const user = await this.repository.update({
-                userId: id,
-                contact: {
+            const { user, address_ } = await this.repository.update(
+                {
+                    userId: id,
                     name,
                     phone,
                     email,
                     password,
-                    address,
                 },
-            });
-            return user;
+                address
+            );
+
+            return {
+                id: user.id,
+                contact: {
+                    name: user.name,
+                    phone: user.phone,
+                    email: user.email,
+                },
+                address: {
+                    street: address_.street,
+                    number: address_.number,
+                    complement: address_.complement,
+                    city: address_.city,
+                    state: address_.state,
+                    zipCode: address_.zipCode,
+                },
+            };
         } catch (error) {
             throw new Error(
                 JSON.stringify({ error: error.message, statusCode: 400 })
