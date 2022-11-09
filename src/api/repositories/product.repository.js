@@ -72,11 +72,13 @@ module.exports = class ProductRepository {
 
     async update(product) {
         try {
-            const { id, name, price, measure, status, category } = product;
+            const { id, name, price, measure, status, category, quantity } =
+                product;
             const productObj = {
                 name: name,
                 price: price,
                 measure: measure,
+                quantity: quantity,
                 status: status,
                 category: category,
             };
