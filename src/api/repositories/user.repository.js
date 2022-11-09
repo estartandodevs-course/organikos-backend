@@ -1,10 +1,11 @@
 const User = require('../database/models/user.model');
-const { createUserAddress } = require('../repositories/address.repository');
+const {
+    createUserAddress,
+    findUserAddress,
+} = require('../repositories/address.repository');
 module.exports = class UserRepository {
     constructor() {}
     async create(user, address) {
-        console.log('user', user);
-        console.log('address', address);
         try {
             const { userId, name, phone, email, password } = user;
             const { street, number, complement, city, state, zipCode } =
@@ -18,16 +19,17 @@ module.exports = class UserRepository {
                 password,
             })
                 .then(async (user) => {
-                    console.log('user', user);
-                    const address_ = await createUserAddress({
-                        id_users: user.id,
-                        street,
-                        number,
-                        complement,
-                        city,
-                        state,
-                        zipCode,
-                    });
+                    const address_ = await createUserAddress(
+                        {
+                            street,
+                            number,
+                            complement,
+                            city,
+                            state,
+                            zipCode,
+                        },
+                        user.id
+                    );
                     return { user, address_ };
                 })
                 .catch((error) => {
@@ -45,10 +47,15 @@ module.exports = class UserRepository {
         }
     }
 
-    async getById() {
+    async getById(id) {
         try {
-            throw new Error('get seller by id');
-        } catch (error) {}
+            const user = await User.findByPk(id);
+            if (!user) throw new Error('User not found');
+            const address_ = await findUserAddress(id);
+            return { user, address: address_ };
+        } catch (error) {
+            throw new Error(error);
+        }
     }
     async delete(id) {
         try {

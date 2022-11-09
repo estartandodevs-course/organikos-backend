@@ -8,7 +8,19 @@ async function findSellerAddress(id) {
             },
         });
     } catch (error) {
-        console.log(error);
+        throw new Error(error);
+    }
+}
+
+async function findUserAddress(id) {
+    try {
+        return await Address.findOne({
+            where: {
+                id_users: id,
+            },
+        });
+    } catch (error) {
+        throw new Error(error);
     }
 }
 
@@ -50,4 +62,5 @@ module.exports = {
     findSellerAddress,
     createSellerAddress,
     createUserAddress,
+    findUserAddress,
 };
