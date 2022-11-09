@@ -81,7 +81,13 @@ module.exports = class UserRepository {
     }
     async delete(id) {
         try {
-            return `delete seller by id ${id}`;
+            const user = await User.findByPk(id);
+            if (!user) throw new Error('User not found');
+            await User.destroy({
+                where: {
+                    id: id,
+                },
+            });
         } catch (error) {
             throw new Error(error);
         }
