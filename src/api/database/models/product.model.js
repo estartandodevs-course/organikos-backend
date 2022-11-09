@@ -22,6 +22,9 @@ const Product = sequelize.define('product', {
     measure: {
         type: DataTypes.STRING,
     },
+    quantity: {
+        type: DataTypes.INTEGER,
+    },
     status: {
         type: DataTypes.INTEGER,
     },

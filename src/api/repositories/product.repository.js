@@ -5,12 +5,21 @@ module.exports = class ProductRepository {
     constructor() {}
     async create(data) {
         try {
-            const { id_seller, name, price, measure, status, category } = data;
+            const {
+                id_seller,
+                name,
+                price,
+                measure,
+                status,
+                category,
+                quantity,
+            } = data;
             const product = {
                 id_seller: id_seller,
                 name: name,
                 price,
                 measure,
+                quantity,
                 status,
                 category,
             };
