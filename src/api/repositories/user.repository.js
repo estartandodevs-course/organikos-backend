@@ -2,6 +2,7 @@ const User = require('../database/models/user.model');
 const {
     createUserAddress,
     findUserAddress,
+    updateUserAddress,
 } = require('../repositories/address.repository');
 module.exports = class UserRepository {
     constructor() {}
@@ -39,9 +40,30 @@ module.exports = class UserRepository {
             throw new Error(error);
         }
     }
-    async update() {
+    async update(user, address) {
+        // console.log('user::', user);
         try {
-            throw new Error('no implemented');
+            const id = user.userId;
+            const addressParam = address;
+            return User.update(
+                { name: user.name, phone: user.phone, email: user.email },
+                {
+                    where: {
+                        id: user.userId,
+                    },
+                }
+            )
+                .then(async () => {
+                    await updateUserAddress(addressParam, id);
+                    const { user, address } = await this.getById(id);
+                    return {
+                        user: user.dataValues,
+                        address_: address.dataValues,
+                    };
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                });
         } catch (error) {
             throw new Error(error);
         }

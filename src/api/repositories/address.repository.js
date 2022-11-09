@@ -58,9 +58,34 @@ async function createUserAddress(address, id) {
     }
 }
 
+async function updateUserAddress(address, id) {
+    console.log('id::', id);
+    try {
+        return await Address.update(
+            {
+                street: address.street,
+                number: address.number,
+                complement: address.complement,
+                city: address.city,
+                state: address.state,
+                zip_code: address.zipCode,
+                country: address.country,
+            },
+            {
+                where: {
+                    id_users: id,
+                },
+            }
+        );
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 module.exports = {
     findSellerAddress,
     createSellerAddress,
     createUserAddress,
     findUserAddress,
+    updateUserAddress,
 };
