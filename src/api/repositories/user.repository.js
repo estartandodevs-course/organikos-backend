@@ -11,7 +11,8 @@ module.exports = class UserRepository {
             const { userId, name, phone, email, password } = user;
             const { street, number, complement, city, state, zipCode } =
                 address;
-
+            if (await this.isRegistered(email))
+                throw new Error('User already registered');
             return User.create({
                 id: userId,
                 name,
@@ -69,15 +70,28 @@ module.exports = class UserRepository {
         }
     }
 
-    async getById(id) {
-        try {
-            const user = await User.findByPk(id);
-            if (!user) throw new Error('User not found');
-            const address_ = await findUserAddress(id);
-            return { user, address: address_ };
-        } catch (error) {
-            throw new Error(error);
-        }
+    async getByEmail(email) {
+        return User.findOne({
+            where: {
+                email: email,
+            },
+        })
+            .then(async (user) => {
+                const addressRaw = await findUserAddress(user.id);
+                const address = {
+                    street: addressRaw.street,
+                    number: addressRaw.number,
+                    complement: addressRaw.complement,
+                    city: addressRaw.city,
+                    state: addressRaw.state,
+                    zipCode: addressRaw.zip_code,
+                };
+
+                return { user, address };
+            })
+            .catch((error) => {
+                throw new Error(error);
+            });
     }
     async delete(id) {
         try {
@@ -91,5 +105,15 @@ module.exports = class UserRepository {
         } catch (error) {
             throw new Error(error);
         }
+    }
+
+    async isRegistered(email) {
+        const user = await User.findOne({
+            where: {
+                email: email,
+            },
+        });
+        if (user) return true;
+        return false;
     }
 };
