@@ -1,13 +1,14 @@
-const isValidUUID = require('../../helpers/uuid-validator.helper');
+// const isValidUUID = require('../../helpers/uuid-validator.helper');
 module.exports = class GetUserByIdService {
     constructor(repository) {
         this.repository = repository;
     }
-    async getById(id) {
+    async getByEmail(email) {
         try {
-            if (!isValidUUID(id)) throw new Error('Id is not a valid uuid id');
-            const { user, address } = await this.repository.getById(id);
-            return {
+            // if (!isValidUUID(id)) throw new Error('Id is not a valid uuid id');
+            const { user, address } = await this.repository.getByEmail(email);
+
+            return await {
                 name: user.name,
                 phone: user.phone,
                 email: user.email,
