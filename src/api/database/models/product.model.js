@@ -31,6 +31,9 @@ const Product = sequelize.define('product', {
     category: {
         type: DataTypes.STRING,
     },
+    url: {
+        type: DataTypes.STRING,
+    },
 });
 // Product.sync();
 module.exports = Product;

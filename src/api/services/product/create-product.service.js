@@ -33,6 +33,7 @@ module.exports = class CreateProductService {
                 price: +product.price,
                 measure: product.measure,
                 quantity: +product.quantity,
+                url: product.url,
                 status: product.status == 1 ? true : false,
                 category: product.category,
             };

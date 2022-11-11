@@ -13,6 +13,7 @@ module.exports = class GetProductByTagService {
                     price: +product.price,
                     quantity: +product.quantity,
                     measure: product.measure,
+                    url: product.url,
                     status: product.status == 1 ? true : false,
                     category: product.category,
                 };
