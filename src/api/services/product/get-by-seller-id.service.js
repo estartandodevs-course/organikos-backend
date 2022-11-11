@@ -12,8 +12,10 @@ module.exports = class GetProductBySellerIdService {
                     id: product.id,
                     seller_id: product.id_seller,
                     name: product.name,
-                    price: product.price.toString(),
+                    price: +product.price,
+                    quantity: +product.quantity,
                     measure: product.measure,
+                    url: product.url,
                     status: product.status == 1 ? true : false,
                     category: product.category,
                 };

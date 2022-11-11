@@ -4,12 +4,13 @@ module.exports = class CreateProductService {
     }
     async create(params, seller_id) {
         try {
-            const { name, price, measure, status, category } = params;
+            const { name, price, measure, status, category, quantity } = params;
 
             if (!seller_id) throw new Error('Missing seller_id');
             if (!name) throw new Error('Missing name');
             if (!price) throw new Error('Missing price');
             if (!measure) throw new Error('Missing measure');
+            if (!quantity) throw new Error('Missing quantity');
             if (!status) throw new Error('Missing status');
             if (!category) throw new Error('Missing category');
 
@@ -18,6 +19,7 @@ module.exports = class CreateProductService {
                 name: name,
                 price: +price,
                 measure: measure.toLowerCase(),
+                quantity: +quantity,
                 status: status == true ? 1 : 0,
                 category: category.toLowerCase(),
             };
@@ -28,8 +30,10 @@ module.exports = class CreateProductService {
                 id: product.id,
                 seller_id: product.id_seller,
                 name: product.name,
-                price: product.price.toString(),
+                price: +product.price,
                 measure: product.measure,
+                quantity: +product.quantity,
+                url: product.url,
                 status: product.status == 1 ? true : false,
                 category: product.category,
             };

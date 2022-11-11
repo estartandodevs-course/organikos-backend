@@ -4,8 +4,8 @@ module.exports = class GetUserByIdController {
     }
     async execute(req, res) {
         try {
-            const { id } = req.params;
-            const user = await this.user.getById(id);
+            const { email } = req.body;
+            const user = await this.user.getByEmail(email);
             res.status(200).send(JSON.stringify(user));
         } catch (error) {
             const errorObj = JSON.parse(error.message);
